@@ -39,23 +39,42 @@ pip install numpy scipy sympy matplotlib
 3. Press `Cmd + Enter` (macOS) or `Ctrl + Enter` (Linux), or click the "Run Code" button.
 4. The result (equation or plot) will be automatically pasted onto your active page!
 
-### Example 1: Solving an ODE
+### Example 1: Integration
+```python
+sp.integrate(x**2 * sp.sin(x), x)
+```
+### Example 2: Basic Algebra
+```python
+sp.expand((x + y + z)**4)
+```
+### Example 3: Plotting
+```python
+t_vals = np.linspace(0, 4 * np.pi, 500)
+wave1 = np.sin(t_vals)
+wave2 = np.sin(1.1 * t_vals)
+interference = wave1 + wave2
+
+plt.figure(figsize=(8, 4))
+plt.plot(t_vals, interference, color='crimson', linewidth=2,
+label='Beat Frequency')
+plt.fill_between(t_vals, interference, color='crimson', alpha=0.2)
+
+plt.title("Wave Interference (Beats)", fontsize=16)
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.legend()
+```
+### Example 4: Series and Limits
+```python
+sp.series(sp.sin(x),x)
+sp.limit(sp.sin(x)/x,x,0)
+```
+### Example 5: ODE
 ```python
 # No imports needed!
 ode = sp.Eq(y.diff(x, x) + y, 0)
 sp.dsolve(ode, y)
 ```
-
-### Example 2: Transparent Matplotlib Plot
-```python
-x_vals = np.linspace(-10, 10, 500)
-y_vals = np.sin(x_vals) * np.exp(-0.1 * np.abs(x_vals))
-
-plt.figure(figsize=(7, 4))
-plt.plot(x_vals, y_vals, color='blue', linewidth=2)
-plt.title("Damped Sine Wave")
-plt.grid(color='gray', linestyle='--', alpha=0.5)
-```
+For more example see sympy and matplotlib tutorials.
 
 ## Author
 **K.A.Rousan**
